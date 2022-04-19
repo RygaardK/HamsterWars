@@ -1,0 +1,46 @@
+﻿@page "/Gallery"
+
+@using DataAccessLibrary
+@using DataAccessLibrary.Models
+
+@inject IHamsterData _db
+
+
+<h3>Hamster Gallery</h3>
+
+@if (hamsters is null)
+{
+    <p><em class="loadingTxt">Loading...</em></p>
+}
+else
+{
+    <div>
+    @foreach(var hamster in hamsters)
+    {
+        <div>
+        <img src="@hamster.ImgSrc">
+        <p>Name: @hamster.Name</p>
+        <p>Age: @hamster.Age</p>
+        <p>Loves: @hamster.Loves</p>
+        <p>Favorite Food: @hamster.FavFood</p>
+        </div>
+    }
+    </div>
+}
+
+
+
+
+
+
+
+
+
+@code {
+    private List<HamsterModel>? hamsters;
+
+    protected override async Task OnInitializedAsync()
+    {
+        hamsters = await _db.GetHamsters();
+    }
+}

@@ -1,0 +1,24 @@
+﻿@using DataAccessLibrary
+@inject IHamsterData _db
+
+
+<div class="card" style="width: 18rem;"> <!-- Skall läggas INLINE på CARD HEADER så dom ligger på samma rad.-->
+    <div class="card-header d-inline-flex">
+        <p class="fw-bold">@hamster.Name</p><p class="fw-light text-end">@hamster.Age</p>
+    </div>
+    <img src="/media/img/@hamster.ImgName" class="card-img-top">
+    <div class="card-body">
+        <p class="card-text">Loves: @hamster.Loves</p>
+        <p class="card-text">Favorite Food: @hamster.FavFood</p>
+        <h5 class="card-title">Games: @hamster.Games</h5>
+        <p>@hamster.Losses</p><!-- Skall ligga INLINE-->
+        <p>@hamster.Wins</p>
+        
+        <!-- RADERA / Editera hamster knapp -->
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public HamsterModel hamster { get; set; }
+}

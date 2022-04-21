@@ -1,10 +1,8 @@
 ﻿@page "/Gallery"
-
 @using DataAccessLibrary
 @using DataAccessLibrary.Models
-
 @inject IHamsterData _db
-
+@using HamsterWars.Components
 
 <h3>Hamster Gallery</h3>
 
@@ -14,27 +12,13 @@
 }
 else
 {
-    <div>
-    @foreach(var hamster in hamsters)
+    // Divvarna hamnar under varandra, sätt storlek 25% vid 1000px 33% vid 800, 100% under 640
+    // lägg en Div ovan för att lösa prob
+    foreach (HamsterModel hamster in hamsters)
     {
-        <div>
-        <img src="@hamster.ImgSrc">
-        <p>Name: @hamster.Name</p>
-        <p>Age: @hamster.Age</p>
-        <p>Loves: @hamster.Loves</p>
-        <p>Favorite Food: @hamster.FavFood</p>
-        </div>
+        <HamsterCard hamster="hamster" />
     }
-    </div>
 }
-
-
-
-
-
-
-
-
 
 @code {
     private List<HamsterModel>? hamsters;

@@ -1,0 +1,54 @@
+﻿@using DataAccessLibrary
+@using DataAccessLibrary.Models
+@using HamsterWars.Components
+@using Services
+@inject IHamsterData _db
+@inject IResultData _bd
+@page "/battle"
+
+<h3 class="text-center">Choose the cutest Hamster</h3>
+
+@if (hamsters is null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="row">
+        <CompetitorCard OnVoting="Voting" hamster1="Competitor1" hamster2="Competitor2" />
+        <div class="column">
+            @if (result)
+            {
+                <button type="button" class="btn btn-primary" onfocus="location.reload()">Next battle</button>
+            }
+            else
+            {
+                <br /> <h1 class="text-center">VS</h1>
+            }
+        </div>
+        <CompetitorCard OnVoting="Voting"  hamster1="Competitor2" hamster2="Competitor1" />
+    </div>
+}
+
+@code
+{
+    private List<HamsterModel>? hamsters;
+    private HamsterModel? Competitor1;
+    private HamsterModel? Competitor2;
+    private ResultModel Result = new ResultModel();
+    private bool result = false;
+    protected async Task Voting()
+    {
+        result = !result;
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (hamsters is null)
+        {
+            hamsters = await _db.GetHamsters();
+        }
+        (Competitor1, Competitor2) = Randomizer.GetCompetitor(hamsters);
+    }
+
+}

@@ -23,8 +23,8 @@ namespace DataAccessLibrary
 
         public Task InsertHamster(HamsterModel hamster)
         {
-            string sql = @"INSERT INTO dbo.Hamsters (Name, Age, FavFood, Loves, ImageSrc)
-                            VALUES (@Name, @Age, @FavFood, @Loves, @ImageSrc)";
+            string sql = @"INSERT INTO dbo.Hamsters (Name, Age, FavFood, Loves, ImageName)
+                            VALUES (@Name, @Age, @FavFood, @Loves, @ImageName)";
             return _db.SaveData(sql, hamster);
         }
         public Task EditHamster(HamsterModel hamster)
@@ -39,16 +39,16 @@ namespace DataAccessLibrary
             string sql = $"DELETE FROM dbo.Hamster WHERE ID = {hamster.ID} ;";
             return _db.SaveData(sql, hamster);
         }
-        // SKAPA NY METOD I SQLDATAACCESS MED ENDAST SQL QUERY
-        //public Task HamsterBattleStatsUpdate(HamsterModel winner, HamsterModel loser)
-        //{
-        //    string sql = $"UPDATE Hamsters " +
-        //                 $"SET Wins = Wins + 1, Games = Games + 1 " +
-        //                 $"WHERE ID = { winner.ID }" +
-        //                 $"UPDATE Hamsters SET Defeats = Defeats + 1," +
-        //                 $"Games = Games + 1 WHERE ID = { loser.ID }";
-        //    return _db.SaveDataQuery(sql);
-        //}
+        public Task UpdateWin(HamsterModel winner)
+        {
+            string sql = @$"UPDATE dbo.Hamsters SET Wins = {winner.Wins}+1, Games = {winner.Games}+1;";
+            return _db.SaveData(sql, winner);
+        }  
+        public Task UpdateLoss(HamsterModel loser)
+        {
+            string sql = @$"UPDATE dbo.Hamsters SET Losses = {loser.Losses}+1, Games = {loser.Games}+1;";
+            return _db.SaveData(sql, loser);
+        }
     }
 }
 

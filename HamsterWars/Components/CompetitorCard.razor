@@ -1,0 +1,39 @@
+﻿@using DataAccessLibrary
+@using DataAccessLibrary.Models
+@using HamsterWars.Components
+
+@inject IHamsterData _db
+@inject IResultData _bd
+
+<!-- bygg inline design-->
+<div class="column" style="float: left">
+    <div style="float: left;">
+        <img class="img-thumbnail" src="/media/img/@hamster1.ImgName">
+        <p class="text-center">@hamster1.Name</p>
+        <p class="text-left">Age: @hamster1.Age</p>
+        <p class="text-left">Favorite food: @hamster1.FavFood</p>
+        <p class="text-left">Favorite activity: @hamster1.Loves</p>
+        <button type="button" @onclick="(() => BattleResult(hamster1,hamster2))" class="btn btn-primary">Like</button> 
+    </div><!-- Ev radera knappen så man trycker på next battle-->
+</div>
+
+@code {
+    [Parameter]
+    public HamsterModel hamster1 { get; set; }
+    [Parameter]
+    public HamsterModel hamster2 { get; set; }
+    [Parameter]
+    public EventCallback<bool> OnVoting { get; set; }
+
+    private ResultModel Result = new ResultModel();
+    private bool results = false;
+    private async Task BattleResult(HamsterModel? winner, HamsterModel? loser)
+    {
+        await _db.UpdateWin(winner);
+        await _db.UpdateLoss(loser);
+        Result.WinnerID = winner.ID;
+        Result.LooserID = loser.ID;
+        await _bd.InsertGame(Result);
+        await OnVoting.InvokeAsync(results = true);
+    }
+}

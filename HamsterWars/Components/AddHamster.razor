@@ -1,0 +1,58 @@
+﻿@using DataAccessLibrary
+@using DataAccessLibrary.Models
+@using HamsterWars.Components
+
+@inject NavigationManager _nav
+@inject IHamsterData _db
+
+
+
+<EditForm Model="@hamster" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <div class="d-grid gap-3" style="width:50%">
+        <div class="p-2 bg-light border">
+            <label>
+                <InputText @bind-Value="hamster.Name" />
+                Name
+            </label>
+        </div>
+        <div class="p-2 bg-light border">
+            <label>
+                <InputNumber @bind-Value="hamster.Age" />
+                Age
+            </label>
+        </div>
+        <div class="p-2 bg-light border">
+            <label>
+                <InputText @bind-Value="hamster.FavFood" />
+                Favorite Food
+            </label>
+        </div>
+        <div class="p-2 bg-light border">
+            <label>
+                <InputText @bind-Value="hamster.Loves" />
+                Love Activity
+            </label>
+        </div>
+        <div class="p-2 bg-light border">
+            <label>
+                <InputFile @bind-Value="hamster.ImgName" />
+            </label>
+        </div>
+
+        <button style="margin-top:1em" type="submit">Submit</button>
+
+    </div>
+</EditForm>
+
+@code {
+    private HamsterModel hamster = new();
+
+    private void HandleValidSubmit()
+    {
+        _db.InsertHamster(hamster);
+        _nav.NavigateTo(_nav.Uri, forceLoad: true);
+
+    }
+}

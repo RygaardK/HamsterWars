@@ -1,0 +1,50 @@
+﻿@using DataAccessLibrary
+@using DataAccessLibrary.Models
+@using HamsterWars.Components
+
+@inject IHamsterData _db
+@page "/stats"
+
+<h3 class="text-center">TOP @topPickQuantity PLAYERS!</h3>
+
+@if (topGames is null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h4 class="text-center">Top @topPickQuantity Winners</h4>
+                <ResultTable hamsters="topWins" staticsType="Wins" />
+            </div>
+            <div class="col">
+                <h4 class="text-center">Top @topPickQuantity Loosers</h4>
+                <ResultTable hamsters="topLosses" staticsType="Losses" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h4 class="text-center">Top @topPickQuantity Gamers!</h4>
+                <ResultTable hamsters="topGames" staticsType="Games" />
+            </div>
+        </div>
+    </div>
+}
+
+@code
+{
+    private List<HamsterModel>? topWins;
+    private List<HamsterModel>? topLosses;
+    private List<HamsterModel>? topGames;
+    // SETTINGS
+    // TOP pick (INT), Order By (String)
+    int topPickQuantity = 7;
+    protected override async Task OnInitializedAsync()
+    {
+        topWins = await _db.GetStats(topPickQuantity, "Wins");
+        topLosses = await _db.GetStats(topPickQuantity, "Losses");
+        topGames = await _db.GetStats(topPickQuantity, "Games");
+    }
+}

@@ -12,12 +12,15 @@
 }
 else
 {
-    // Divvarna hamnar under varandra, sätt storlek 25% vid 1000px 33% vid 800, 100% under 640
-    // lägg en Div ovan för att lösa prob
-    foreach (HamsterModel hamster in hamsters)
-    {
-        <HamsterCard hamster="hamster" />
-    }
+    <div class="container gap-3">
+        @foreach (HamsterModel hamster in hamsters)
+        {
+        <div class="d-inline-flex p-2">
+
+            <HamsterCard hamster="hamster" />
+        </div>
+        }
+    </div>
 }
 
 @code {

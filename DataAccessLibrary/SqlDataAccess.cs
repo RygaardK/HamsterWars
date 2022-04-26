@@ -9,11 +9,11 @@ namespace DataAccessLibrary
     {
         private readonly IConfiguration _config;
         public string ConnectionStringName { get; set; } = "Default";
-        public SqlDataAccess(IConfiguration config)
+        public SqlDataAccess(IConfiguration config)// Reads the Configs
         {
             _config = config;
         }
-        public async Task<List<T>> LoadData<T, U>(string sql, U parameters)
+        public async Task<List<T>> LoadData<T, U>(string sql, U parameters) // Makes the Loading Query towards SQL.
         {
             string connectionString = _config.GetConnectionString(ConnectionStringName);
             using (IDbConnection connection = new SqlConnection(connectionString))
@@ -23,7 +23,7 @@ namespace DataAccessLibrary
                 return data.ToList();
             }
         }
-        public async Task SaveData<T>(string sql, T parameters)
+        public async Task SaveData<T>(string sql, T parameters) // Makes the Execute towards SQL.
         {
             string connectionString = _config.GetConnectionString(ConnectionStringName);
             using (IDbConnection connection = new SqlConnection(connectionString))

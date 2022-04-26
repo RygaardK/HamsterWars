@@ -1,19 +1,30 @@
 ﻿@using DataAccessLibrary
 @inject IHamsterData _db
+@inject NavigationManager _nav
 
-
-<div class="card" style="width: 18rem;"> <!-- Skall läggas INLINE på CARD HEADER så dom ligger på samma rad.-->
+<div class="card" style="width: 18rem;">
+    <!-- Skall läggas INLINE på CARD HEADER så dom ligger på samma rad.-->
     <div class="card-header d-inline-flex">
-        <p class="fw-bold">@hamster.Name</p><p class="fw-light text-end">@hamster.Age</p>
+        <p class="fw-bold">@hamster.Name</p><p style="width:100%" class="fw-light text-end">@hamster.Age</p>
+            <span @onclick="(() => deleteMe(hamster))" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                X
+                <span class="visually-hidden">Delete Hamster</span>
+            </span>
     </div>
     <img src="/media/img/@hamster.ImgName" class="card-img-top">
     <div class="card-body">
         <p class="card-text">Loves: @hamster.Loves</p>
         <p class="card-text">Favorite Food: @hamster.FavFood</p>
-        <h5 class="card-title">Games: @hamster.Games</h5>
-        <p>@hamster.Losses</p><!-- Skall ligga INLINE-->
-        <p>@hamster.Wins</p>
-        
+        <div class="bg-danger rounded-top text-white" style="padding:0.4em">
+            <h5 class="card-title">Games: @hamster.Games</h5>
+            <hr style="color:white" />
+            <div>
+                <p>Wins: @hamster.Wins</p>
+                <p>Losses: @hamster.Losses</p>
+
+            </div>
+        </div>
+
         <!-- RADERA / Editera hamster knapp -->
     </div>
 </div>
@@ -21,4 +32,11 @@
 @code {
     [Parameter]
     public HamsterModel hamster { get; set; }
+    public async Task deleteMe(HamsterModel hamster)
+    {
+        await _db.DeleteHamster(hamster);
+        _nav.NavigateTo(_nav.Uri, forceLoad: true);
+        // Should pass the "new list" or update parent list isntead of reloading.
+
+    }
 }

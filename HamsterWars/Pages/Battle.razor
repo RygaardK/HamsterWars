@@ -14,19 +14,10 @@
 }
 else
 {
-    <div class="row">
-        <CompetitorCard OnVoting="Voting" hamster1="Competitor1" hamster2="Competitor2" />
-        <div class="column">
-            @if (result)
-            {
-                <button type="button" class="btn btn-primary" onfocus="location.reload()">Next battle</button>
-            }
-            else
-            {
-                <br /> <h1 class="text-center">VS</h1>
-            }
-        </div>
-        <CompetitorCard OnVoting="Voting"  hamster1="Competitor2" hamster2="Competitor1" />
+    <div class="hamsterCompetitorsContainer">
+        <CompetitorCard hamster1="Competitor1" hamster2="Competitor2" />
+        <h1 class="CompetitorVS text-center">VS</h1>
+        <CompetitorCard hamster1="Competitor2" hamster2="Competitor1" />
     </div>
 }
 
@@ -36,11 +27,6 @@ else
     private HamsterModel? Competitor1;
     private HamsterModel? Competitor2;
     private ResultModel Result = new ResultModel();
-    private bool result = false;
-    protected async Task Voting()
-    {
-        result = !result;
-    }
 
     protected override async Task OnInitializedAsync()
     {

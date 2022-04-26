@@ -1,0 +1,53 @@
+﻿@using DataAccessLibrary
+<!-- Skall ta emot en lista på Top 5 av: Wins, Losses and Games så det blir 3 varianter -->
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Wins</th>
+            <th scope="col">Losses</th>
+            <th scope="col">Games</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (HamsterModel hamster in hamsters)
+        {
+            <tr>
+                <th scope="row">@hamster.ID</th>
+                <td>@hamster.Name</td>
+                @if (staticsType == "Wins")
+                {
+                    <td class="table-active">@hamster.Wins</td>
+                }
+                else
+                {
+                    <td>@hamster.Wins</td>
+                }
+                @if (staticsType == "Losses")
+                {
+                    <td class="table-active">@hamster.Losses</td>
+                }
+                else
+                {
+                    <td>@hamster.Losses</td>
+                }
+                @if (staticsType == "Games")
+                {
+                    <td class="table-active">@hamster.Games</td>
+                }
+                else
+                {
+                    <td>@hamster.Games</td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    [Parameter]
+    public List<HamsterModel> hamsters { get; set; }
+    [Parameter]
+    public string staticsType { get; set; }
+}

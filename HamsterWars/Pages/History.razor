@@ -1,0 +1,62 @@
+﻿@using DataAccessLibrary
+@using DataAccessLibrary.Models
+@using HamsterWars.Components
+
+@inject NavigationManager _nav
+@inject IHamsterData _db
+@inject IResultData _bd
+@page "/history"
+
+<h3 class="text-center">Allt the Matches</h3>
+
+@if (allResults is null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Nr</th>
+                <th scope="col">Winner</th>
+                <th scope="col">Looser</th>
+                <th scope="col">Date</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (ResultModel result in allResults)
+            {
+                
+                <tr>
+                    <td>@(index++)</td>
+                    <th scope="row">@result.WinnerID @if (@allHamsters[@result.WinnerID] != null) {@allHamsters[@result.WinnerID].Name}</th> <!-- Måste konttrollera på något sätt, den försöker gå in i listan på name trots att den är "out of boundary", trodde jag löste det genom att kolla om den var null!?-->
+                    <td>@result.LooserID @if (@allHamsters[@result.LooserID] != null) {@allHamsters[@result.LooserID].Name}</td>
+                    <td>@result.DateOfGame</td>
+                    <td><button @onclick="(() => deleteMe(result))">X</button></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}
+
+
+@code
+{
+    private List<ResultModel>? allResults;
+    private List<HamsterModel>? allHamsters;
+    private int index = 0; //Indexer for Foreach
+
+    protected override async Task OnInitializedAsync()
+    {
+        allHamsters = await _db.GetHamsters();
+        allResults = await _bd.GetGames();
+    }
+    public async Task deleteMe(ResultModel result)
+    {
+        await _bd.DeleteGame(result);
+        _nav.NavigateTo(_nav.Uri, forceLoad: true);
+    }
+}

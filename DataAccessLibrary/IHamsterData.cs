@@ -7,6 +7,7 @@ namespace DataAccessLibrary
         Task DeleteHamster(HamsterModel hamster);
         Task EditHamster(HamsterModel hamster);
         Task<List<HamsterModel>> GetHamsters();
+        Task<List<HamsterModel>> GetStats(int topX, string orderBy);
         Task InsertHamster(HamsterModel hamster);
         Task UpdateWin(HamsterModel hamster);
         Task UpdateLoss(HamsterModel hamster);

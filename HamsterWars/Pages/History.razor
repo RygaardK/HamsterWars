@@ -1,6 +1,7 @@
 ﻿@using DataAccessLibrary
 @using DataAccessLibrary.Models
 @using HamsterWars.Components
+@using HamsterWars.Services
 
 @inject NavigationManager _nav
 @inject IHamsterData _db
@@ -28,11 +29,28 @@ else
         <tbody>
             @foreach (ResultModel result in allResults)
             {
-                
                 <tr>
                     <td>@(index++)</td>
-                    <th scope="row">@result.WinnerID @if (@allHamsters[@result.WinnerID] != null) {@allHamsters[@result.WinnerID].Name}</th> <!-- Måste konttrollera på något sätt, den försöker gå in i listan på name trots att den är "out of boundary", trodde jag löste det genom att kolla om den var null!?-->
-                    <td>@result.LooserID @if (@allHamsters[@result.LooserID] != null) {@allHamsters[@result.LooserID].Name}</td>
+                    <th scope="row">
+                        @if (@GetNames.GetCompetitorName(@result.WinnerID, allHamsters).Name == "Unknown")
+                        {
+                            <p style="color:red">@result.WinnerID</p>
+                        }
+                        else
+                        {
+                            @GetNames.GetCompetitorName(@result.WinnerID, allHamsters).Name
+                        }
+                    </th>
+                    <td>
+                        @if (@GetNames.GetCompetitorName(@result.LooserID, allHamsters).Name == "Unknown")
+                        {
+                            <p style="color:red">@result.LooserID</p>
+                        }
+                        else
+                        {
+                            @GetNames.GetCompetitorName(@result.LooserID, allHamsters).Name
+                        }
+                    </td>
                     <td>@result.DateOfGame</td>
                     <td><button @onclick="(() => deleteMe(result))">X</button></td>
                 </tr>
@@ -41,7 +59,6 @@ else
     </table>
 
 }
-
 
 @code
 {
@@ -54,6 +71,7 @@ else
         allHamsters = await _db.GetHamsters();
         allResults = await _bd.GetGames();
     }
+
     public async Task deleteMe(ResultModel result)
     {
         await _bd.DeleteGame(result);

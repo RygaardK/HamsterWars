@@ -14,6 +14,11 @@ namespace DataAccessLibrary
             string sql = "SELECT * FROM Hamsters";
             return _db.LoadData<HamsterModel, dynamic>(sql, new { });
         }
+        public Task<List<HamsterModel>> GetHamsterName(int id)//Fetches Name hamsters for Matching ID
+        {
+            string sql = "SELECT Name FROM Hamsters WHERE ID = @ID";
+            return _db.LoadData<HamsterModel, dynamic>(sql, new { });
+        }
         public Task InsertHamster(HamsterModel hamster)//Inserts A hamster into DB.
         {
             string sql = $"INSERT INTO dbo.Hamsters (Name, Age, FavFood, Loves, ImgName) VALUES (@Name, @Age, @FavFood, @Loves, @ImgName)";

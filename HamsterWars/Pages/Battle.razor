@@ -2,6 +2,7 @@
 @using DataAccessLibrary.Models
 @using HamsterWars.Components
 @using Services
+
 @inject IHamsterData _db
 @inject IResultData _bd
 @page "/battle"
@@ -14,10 +15,12 @@
 }
 else
 {
+    <div class="vw-70">
     <div class="hamsterCompetitorsContainer">
-        <CompetitorCard hamster1="Competitor1" hamster2="Competitor2" />
+        <CompetitorCard competitor="Competitor1" opponent="Competitor2" />
         <h1 class="CompetitorVS text-center">VS</h1>
-        <CompetitorCard hamster1="Competitor2" hamster2="Competitor1" />
+        <CompetitorCard competitor="Competitor2" opponent="Competitor1" />
+    </div>
     </div>
 }
 

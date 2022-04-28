@@ -6,14 +6,16 @@
 @inject IHamsterData _db
 @inject IResultData _bd
 
-<!-- bygg inline design-->
-<div class="hamstercompetitorsCard">
-    <img class="hamstercompetitorsImg" src="/media/img/@competitor.ImgName">
-    <p class="text-left">@competitor.Name</p>
-    <p class="text-left">Age: @competitor.Age</p>
-    <p class="text-left">Favorite food: @competitor.FavFood</p>
-    <p class="text-left">Favorite activity: @competitor.Loves</p>
+
+<div class="card" style="width:80%;">
+    <img class="card-img-top" style="height:auto; width:30vw;" src="/media/img/@competitor.ImgName">
+    <div class="card-body">
+    <h5 class="card-title">@competitor.Name</h5>
+    <p class="card-text">Age: @competitor.Age</p>
+    <p class="card-text">Favorite food: @competitor.FavFood</p>
+    <p class="card-text">Favorite activity: @competitor.Loves</p>
     <button type="button" @onclick="(() => BattleResult(competitor,opponent))" class="btn btn-primary">Like</button>
+    </div>
 </div>
 
 @code {

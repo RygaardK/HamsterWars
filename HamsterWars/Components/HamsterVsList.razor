@@ -6,39 +6,51 @@
 @inject IHamsterData _db
 @inject IResultData _bd
 @page "/matchwinners/{id:int}"
-
-<HamsterCard hamster="hamster" />
-
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th scope="col">GameID</th>
-            <th scope="col">Winner</th>
-            <th scope="col">Looser</th>
-            <th scope="col">Date</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (ResultModel result in allResults)
-        {
+@if (hamster is null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <HamsterCard hamster="hamster" />
+}
+@if (allResults is null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table table-hover">
+        <thead>
             <tr>
-                <th>@result.ID</th>
-                <td scope="row">@GetNames.GetCompetitorName(@result.WinnerID, allHamsters).Name;</td>
-                <td>
-                    @if (@GetNames.GetCompetitorName(@result.LooserID, allHamsters).Name == "Unknown")
-                    {
-                        <p style="color:red">@result.LooserID</p>
-                    }
-                    else
-                    {
-                        @GetNames.GetCompetitorName(@result.LooserID, allHamsters).Name
-                    }
-                </td>
-                <td>@result.DateOfGame</td>
+                <th scope="col">GameID</th>
+                <th scope="col">Winner</th>
+                <th scope="col">Looser</th>
+                <th scope="col">Date</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (ResultModel result in allResults)
+            {
+                <tr>
+                    <th>@result.ID</th>
+                    <td scope="row">@GetNames.GetCompetitorName(@result.WinnerID, allHamsters).Name;</td>
+                    <td>
+                        @if (@GetNames.GetCompetitorName(@result.LooserID, allHamsters).Name == "Unknown")
+                        {
+                            <p style="color:red">@result.LooserID</p>
+                        }
+                        else
+                        {
+                            @GetNames.GetCompetitorName(@result.LooserID, allHamsters).Name
+                        }
+                    </td>
+                    <td>@result.DateOfGame</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
 @code {
     [Parameter]
     public int id { get; set; }

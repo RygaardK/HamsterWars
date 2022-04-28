@@ -40,7 +40,7 @@ else
     private List<HamsterModel>? topGames;
     // SETTINGS
     // TOP pick (INT), Order By (String)
-    int topPickQuantity = 7;
+    int topPickQuantity = 5;
     protected override async Task OnInitializedAsync()
     {
         topWins = await _db.GetStats(topPickQuantity, "Wins");

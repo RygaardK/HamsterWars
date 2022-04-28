@@ -51,8 +51,8 @@ else
                             @GetNames.GetCompetitorName(@result.LooserID, allHamsters).Name
                         }
                     </td>
-                    <td>@result.DateOfGame</td>
-                    <td><button @onclick="(() => deleteMe(result))" class="btn-sm btn-outline-danger">X</button></td>
+                    <td>@result.Date</td>
+                    <td><button @onclick="(() => deleteMe(result))" class="btn btn-sm btn-outline-danger">X</button></td>
                 </tr>
             }
         </tbody>

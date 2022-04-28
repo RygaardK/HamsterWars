@@ -34,7 +34,7 @@
     public async Task deleteMe(HamsterModel hamster)
     {
         await _db.DeleteHamster(hamster);
-        _nav.NavigateTo(_nav.Uri, forceLoad: true);
+        _nav.NavigateTo("gallery", forceLoad: true);
         // Should pass the "new list" or update parent list isntead of reloading.
 
     }

@@ -31,32 +31,36 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xIYW1zdGVyQ2FyZC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/K/Source/repos/HamsterWars/HamsterWars/Components/HamsterMatchWinners.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xIYW1zdGVyTWF0Y2hXaW5uZXJzLnJhem9y
+[C:/Users/K/Source/repos/HamsterWars/HamsterWars/Components/HamsterVsList.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xIYW1zdGVyVnNMaXN0LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/K/Source/repos/HamsterWars/HamsterWars/Components/ResultTable.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xSZXN1bHRUYWJsZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/K/Source/repos/HamsterWars/HamsterWars/Pages/Battle.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQmF0dGxlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/K/Source/repos/HamsterWars/HamsterWars/Pages/Gallery.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR2FsbGVyeS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/K/Source/repos/HamsterWars/HamsterWars/Pages/Hamster.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSGFtc3Rlci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/K/Source/repos/HamsterWars/HamsterWars/Pages/History.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSGlzdG9yeS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/K/Source/repos/HamsterWars/HamsterWars/Pages/Index.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/K/Source/repos/HamsterWars/HamsterWars/Pages/SubPages/Battle.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3ViUGFnZXNcQmF0dGxlLnJhem9y
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/K/Source/repos/HamsterWars/HamsterWars/Pages/SubPages/Gallery.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3ViUGFnZXNcR2FsbGVyeS5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/K/Source/repos/HamsterWars/HamsterWars/Pages/SubPages/History.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3ViUGFnZXNcSGlzdG9yeS5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/K/Source/repos/HamsterWars/HamsterWars/Pages/SubPages/Stats.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3ViUGFnZXNcU3RhdHMucmF6b3I=
+[C:/Users/K/Source/repos/HamsterWars/HamsterWars/Pages/Stats.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3RhdHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/K/Source/repos/HamsterWars/HamsterWars/_Imports.razor]

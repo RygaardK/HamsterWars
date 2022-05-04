@@ -5,9 +5,10 @@
 
 @inject IHamsterData _db
 @inject IResultData _bd
+@inject NavigationManager _nav
 @page "/matchwinners/{id:int}"
 
-
+<button class="btn btn-primary" @onclick="goBack" style="margin:1rem;">Back</button>
 @if (allResults is null && hamster is null)
 {
     <p><em>Loading...</em></p>
@@ -80,5 +81,10 @@ else
         allHamsters = await _db.GetHamsters();
         allResults = await _bd.GetGames();
         hamster = setHamster();
+    }
+    private void goBack()
+    {
+          _nav.NavigateTo("gallery", forceLoad: true);
+    
     }
 }

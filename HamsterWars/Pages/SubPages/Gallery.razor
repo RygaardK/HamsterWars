@@ -4,6 +4,7 @@
 @inject IHamsterData _db
 @using HamsterWars.Components
 
+<AddHamster />
 <h3>Hamster Gallery</h3>
 
 @if (hamsters is null)
@@ -15,10 +16,10 @@ else
     <div class="container gap-3">
         @foreach (HamsterModel hamster in hamsters)
         {
-        <div class="d-inline-flex p-2">
+            <div class="d-inline-flex p-2">
 
-            <HamsterCard hamster="hamster" />
-        </div>
+                <HamsterCard hamster="hamster" />
+            </div>
         }
     </div>
 }

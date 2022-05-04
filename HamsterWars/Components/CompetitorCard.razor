@@ -8,7 +8,7 @@
 
 
 <div class="card" style="width:80%;">
-    <img class="card-img-top" style="height:auto; width:30vw;" src="/media/img/@competitor.ImgName">
+    <img class="card-img-top" style="height:450px; width:600px;" src="/media/img/@competitor.ImgName">
     <div class="card-body">
     <h5 class="card-title">@competitor.Name</h5>
     <p class="card-text">Age: @competitor.Age</p>
@@ -26,7 +26,7 @@
 
     private ResultModel Result = new ResultModel();
     private bool results = false;
-    private async Task BattleResult(HamsterModel? winner, HamsterModel? loser)
+    private async Task BattleResult(HamsterModel winner, HamsterModel loser)
     {
         await _db.UpdateWin(winner);
         await _db.UpdateLoss(loser);

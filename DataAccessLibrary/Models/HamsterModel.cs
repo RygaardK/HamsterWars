@@ -17,7 +17,7 @@ namespace DataAccessLibrary.Models
         [Required]
         [MinLength(3, ErrorMessage = "String too short (3 character minimum) for a Hamster's Activity.")]
         public string Loves { get; set; }
-        public string ImgName { get; set; }
+        public string ImgName { get; set; } = "404hamster.jpg";
         public int Wins { get; set; }
         public int Losses { get; set; }
         public int Games { get; set; }

@@ -5,13 +5,13 @@
 <div class="card" style="width: 18rem;">
     <!-- Skall läggas INLINE på CARD HEADER så dom ligger på samma rad.-->
     <div class="card-header d-inline-flex">
-        <p class="fw-bold">@hamster.Name</p><p style="width:100%" class="fw-light text-end">@hamster.Age</p>
-            <span @onclick="(() => deleteMe(hamster))" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+        <p class="fw-bold" style="width:80%;">@hamster.Name</p><p style="width:20%;" class="fw-light text-end">@hamster.Age</p>
+            <span @onclick="(() => deleteMe(hamster))" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="cursor:pointer">
                 X
                 <span class="visually-hidden">Delete Hamster</span>
             </span>
     </div>
-    <a href="/matchwinners/@hamster.ID"><img src="/media/img/@hamster.ImgName" class="card-img-top"></a>
+    <a href="/matchwinners/@hamster.ID"><img src="/media/img/@hamster.ImgName" class="card-img-top" style="width:280px; height:190px;"></a>
     <div class="card-body">
         <p class="card-text">Loves: @hamster.Loves</p>
         <p class="card-text">Favorite Food: @hamster.FavFood</p>
